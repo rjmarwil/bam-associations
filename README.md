@@ -14,4 +14,6 @@ In this benchmark, there are 3 model specs and 2 feature specs. One of the featu
 
 In order to pass the model specs, you'll need to set up a new table as well as associations in each of your model files.
 
+The feature spec files expect an unnested appointments index, which only shows appointments for the logged in user.
+
 Pry and launchy are included by default for debugging capybara specs.
