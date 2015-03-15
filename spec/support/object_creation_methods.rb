@@ -3,3 +3,9 @@ def create_user(options={})
 
   User.create!(defaults.merge(options))
 end
+
+def create_doctor(options={})
+  defaults = {name: "Dr. Evil"}
+
+  Doctor.create!(defaults.merge(options))
+end
