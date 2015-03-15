@@ -4,6 +4,7 @@ feature "user appointments" do
   scenario "can be created by selecting a doctor and date" do
     create_doctor(name: "Dr. Vader")
     create_doctor(name: "Dr. Maul")
+    create_user(username: "C3p0", password: "Don't blame me. I'm an interpreter")
     user = create_user(username: "R2D2", password: "beep boop bop")
 
     sign_in(user)
