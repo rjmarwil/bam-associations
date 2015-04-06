@@ -1,7 +1,7 @@
 <p>Upcoming Appointments for <%= current_user.username %>: <%= current_user.appointments.count %></p>
 
-<p>Doctors Assigned to <%= current_user.username %>: <%= current_user.doctors.count %></p>
+<p>Doctors Assigned to <%= current_user.username %>: <%= current_user.doctors.uniq.count %></p>
 
 <p><%= link_to "New Appointment", new_user_appointment_path(current_user) %></p>
 
-<p><%= link_to "Edit", edit_user_appointment_path(current_user) %></p>
+<p><%= link_to "Edit", edit_user_appointment_path(current_user, @appointment.last.id) %></p>
