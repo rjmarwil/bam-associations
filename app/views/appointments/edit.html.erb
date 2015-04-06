@@ -1,0 +1,17 @@
+<%= form_for @appointment do |f| %>
+
+  <p>
+    <%= f.label :doctor_id %>
+    <%= f.collection_select :doctor_id, Doctor.all, :id, :name, {include_blank: false} %>
+  </p>
+
+  <p>
+    <%= f.label :date %>
+    <%= f.date_field :date %>
+  </p>
+
+  <p>
+    <%= f.submit %>
+  </p>
+
+<% end %>
