@@ -1,4 +1,4 @@
-<%= form_for @appointment do |f| %>
+<%= form_for([@doctor, @appointment]) do |f| %>
 
   <p>
     <%= f.label :doctor_id %>
