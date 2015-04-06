@@ -1,5 +1,7 @@
 class AppointmentsController < ApplicationController
   def index
+    @doctor = Doctor.all
+    @appointment = Appointment.all
   end
 
   def new
@@ -8,24 +10,35 @@ class AppointmentsController < ApplicationController
   end
 
   def create
-    @doctor = Doctor.find(params[:doctor_id])
-    @user = User.find(params[:user_id])
     @appointment = Appointment.new(appointment_params)
-    @appointment.doctor_id = @doctor.id
-    @appointment.user_id = @user.id
+    @appointment.user_id = current_user.id
+    @doctor = @appointment.doctor
 
     if @appointment.save
-      redirect_to appointments_path, notice: "Appointment Created with #{@doctor}"
+      redirect_to appointments_path, notice: "Appointment Created with #{@doctor.name}"
     else
       render :new
     end
   end
 
-  def appointment_params
-    params.require(:appointment).permit(:doctor_id, :appointment_date)
-  end
-
   def edit
     @appointment = Appointment.find(params[:id])
+  end
+
+  def update
+    @appointment = Appointment.find(params[:id])
+    @doctor = @appointment.doctor
+
+    if @appointment.update(appointent_params)
+      redirect_to appointments_path, notice: "Appointment Updated with #{@doctor.name}"
+    else
+      render :edit
+    end
+  end
+
+  private
+
+  def appointment_params
+    params.require(:appointment).permit(:doctor_id, :date, :user_id)
   end
 end
