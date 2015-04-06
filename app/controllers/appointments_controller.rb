@@ -23,13 +23,14 @@ class AppointmentsController < ApplicationController
 
   def edit
     @appointment = Appointment.find(params[:id])
+    @doctor = @appointment.doctor
   end
 
   def update
     @appointment = Appointment.find(params[:id])
     @doctor = @appointment.doctor
 
-    if @appointment.update(appointent_params)
+    if @appointment.update(appointment_params)
       redirect_to appointments_path, notice: "Appointment Updated with #{@doctor.name}"
     else
       render :edit
